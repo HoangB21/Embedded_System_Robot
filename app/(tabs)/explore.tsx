@@ -1,109 +1,331 @@
-import { StyleSheet, Image, Platform } from 'react-native';
-
-import { Collapsible } from '@/components/Collapsible';
-import { ExternalLink } from '@/components/ExternalLink';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
+import { StyleSheet, ScrollView, View, Image } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { IconSymbol } from '@/components/ui/IconSymbol';
+import { LinearGradient } from 'expo-linear-gradient';
 
-export default function TabTwoScreen() {
+export default function ExploreScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
-          style={styles.headerImage}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Explore</ThemedText>
-      </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
-        <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the web version, press{' '}
-          <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
-        </ThemedText>
-      </Collapsible>
-      <Collapsible title="Images">
-        <ThemedText>
-          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
-        </ThemedText>
-        <Image source={require('@/assets/images/react-logo.png')} style={{ alignSelf: 'center' }} />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Custom fonts">
-        <ThemedText>
-          Open <ThemedText type="defaultSemiBold">app/_layout.tsx</ThemedText> to see how to load{' '}
-          <ThemedText style={{ fontFamily: 'SpaceMono' }}>
-            custom fonts such as this one.
+    <ScrollView style={styles.scrollView}>
+      <LinearGradient
+        colors={['#4c669f', '#3b5998', '#192f6a']}
+        style={styles.headerGradient}
+      >
+        <View style={styles.titleContainer}>
+          <ThemedText type="title" style={styles.mainTitle}>How to Use the App</ThemedText>
+        </View>
+      </LinearGradient>
+
+      <View style={styles.container}>
+        {/* Introduction */}
+        <View style={styles.introCard}>
+          <ThemedText style={styles.introText}>
+            Welcome to the Robot Controller App! This app allows you to control your robot via WiFi. Follow the steps below to get started.
           </ThemedText>
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/versions/latest/sdk/font">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Light and dark mode components">
-        <ThemedText>
-          This template has light and dark mode support. The{' '}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
-          what the user's current color scheme is, and so you can adjust UI colors accordingly.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animations">
-        <ThemedText>
-          This template includes an example of an animated component. The{' '}
-          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
-          the powerful <ThemedText type="defaultSemiBold">react-native-reanimated</ThemedText>{' '}
-          library to create a waving hand animation.
-        </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
-              component provides a parallax effect for the header image.
+        </View>
+
+        {/* Step 1: Connect to the Robot */}
+        <View style={styles.card}>
+          <View style={styles.stepHeader}>
+            <View style={styles.stepNumberContainer}>
+              <ThemedText style={styles.stepNumber}>1</ThemedText>
+            </View>
+            <ThemedText type="defaultSemiBold" style={styles.sectionTitle}>
+              Connect to the Robot
             </ThemedText>
-          ),
-        })}
-      </Collapsible>
-    </ParallaxScrollView>
+          </View>
+          <View style={styles.cardContent}>
+            <ThemedText style={styles.sectionText}>
+              Ensure your device is connected to the same WiFi network as the robot. The app will communicate with the robot over this network.
+            </ThemedText>
+            <View style={styles.iconContainer}>
+              <Image
+                source={{ uri: "/api/placeholder/100/100" }}
+                style={styles.stepIcon}
+                alt="Connect icon"
+              />
+            </View>
+          </View>
+        </View>
+
+        {/* Step 2: Select a Mode */}
+        <View style={styles.card}>
+          <View style={styles.stepHeader}>
+            <View style={styles.stepNumberContainer}>
+              <ThemedText style={styles.stepNumber}>2</ThemedText>
+            </View>
+            <ThemedText type="defaultSemiBold" style={styles.sectionTitle}>
+              Select a Mode
+            </ThemedText>
+          </View>
+          <View style={styles.cardContent}>
+            <ThemedText style={styles.sectionText}>
+              Use the "Mode Selection" section to choose one of the following modes:
+            </ThemedText>
+            <View style={styles.modeContainer}>
+              <View style={styles.modeCard}>
+                <ThemedText type="defaultSemiBold" style={styles.modeTitle}>WiFi Control:</ThemedText>
+                <ThemedText style={styles.modeDescription}>Directly control the robot's movement.</ThemedText>
+              </View>
+              <View style={styles.modeCard}>
+                <ThemedText type="defaultSemiBold" style={styles.modeTitle}>Obstacle Avoidance:</ThemedText>
+                <ThemedText style={styles.modeDescription}>The robot will automatically avoid obstacles.</ThemedText>
+              </View>
+              <View style={styles.modeCard}>
+                <ThemedText type="defaultSemiBold" style={styles.modeTitle}>Follow:</ThemedText>
+                <ThemedText style={styles.modeDescription}>The robot will follow a target.</ThemedText>
+              </View>
+            </View>
+          </View>
+        </View>
+
+        {/* Step 3: Adjust Speed */}
+        <View style={styles.card}>
+          <View style={styles.stepHeader}>
+            <View style={styles.stepNumberContainer}>
+              <ThemedText style={styles.stepNumber}>3</ThemedText>
+            </View>
+            <ThemedText type="defaultSemiBold" style={styles.sectionTitle}>
+              Adjust Speed
+            </ThemedText>
+          </View>
+          <View style={styles.cardContent}>
+            <ThemedText style={styles.sectionText}>
+              In "WiFi Control" mode, use the speed slider to adjust the robot's speed. Slide to the right to increase speed or to the left to decrease it.
+            </ThemedText>
+            <View style={styles.iconContainer}>
+              <Image
+                source={{ uri: "/api/placeholder/100/100" }}
+                style={styles.stepIcon}
+                alt="Speed icon"
+              />
+            </View>
+          </View>
+        </View>
+
+        {/* Step 4: Control the Robot */}
+        <View style={styles.card}>
+          <View style={styles.stepHeader}>
+            <View style={styles.stepNumberContainer}>
+              <ThemedText style={styles.stepNumber}>4</ThemedText>
+            </View>
+            <ThemedText type="defaultSemiBold" style={styles.sectionTitle}>
+              Control the Robot
+            </ThemedText>
+          </View>
+          <View style={styles.cardContent}>
+            <ThemedText style={styles.sectionText}>
+              Use the directional buttons to move the robot:
+            </ThemedText>
+            <View style={styles.controlGrid}>
+              <View style={[styles.controlButton, { width: '100%' }]}>
+                <ThemedText type="defaultSemiBold">Forward</ThemedText>
+              </View>
+              <View style={[styles.controlButton, { width: '32%' }]}>
+                <ThemedText type="defaultSemiBold">Left</ThemedText>
+              </View>
+              <View style={[styles.controlButton, { width: '32%' }]}>
+                <ThemedText type="defaultSemiBold">Stop</ThemedText>
+              </View>
+              <View style={[styles.controlButton, { width: '32%' }]}>
+                <ThemedText type="defaultSemiBold">Right</ThemedText>
+              </View>
+              <View style={[styles.controlButton, { width: '100%' }]}>
+                <ThemedText type="defaultSemiBold">Backward</ThemedText>
+              </View>
+            </View>
+          </View>
+        </View>
+
+        {/* Troubleshooting */}
+        <View style={[styles.card, styles.troubleshootingCard]}>
+          <View style={styles.stepHeader}>
+            <ThemedText type="defaultSemiBold" style={styles.troubleshootingTitle}>
+              Troubleshooting
+            </ThemedText>
+          </View>
+          <View style={styles.cardContent}>
+            <ThemedText style={styles.sectionText}>
+              If you encounter any issues, ensure that:
+            </ThemedText>
+            <View style={styles.troubleshootingItem}>
+              <View style={styles.bulletDot} />
+              <ThemedText style={styles.bulletText}>
+                Your device is connected to the correct WiFi network.
+              </ThemedText>
+            </View>
+            <View style={styles.troubleshootingItem}>
+              <View style={styles.bulletDot} />
+              <ThemedText style={styles.bulletText}>
+                The robot is powered on and connected to the network.
+              </ThemedText>
+            </View>
+            <View style={styles.troubleshootingItem}>
+              <View style={styles.bulletDot} />
+              <ThemedText style={styles.bulletText}>
+                The app has the necessary permissions to access the network.
+              </ThemedText>
+            </View>
+          </View>
+        </View>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
+  scrollView: {
+    flex: 1,
+    backgroundColor: '#f8f9fa',
+    marginBottom: 50,
+  },
+  headerGradient: {
+    paddingTop: 60,
+    paddingBottom: 30,
+  },
+  container: {
+    padding: 16,
+    paddingBottom: 40,
   },
   titleContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  mainTitle: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    textAlign: 'center',
+  },
+  introCard: {
+    backgroundColor: '#ffffff',
+    borderRadius: 16,
+    padding: 20,
+    marginTop: -20,
+    marginBottom: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 5,
+  },
+  introText: {
+    fontSize: 16,
+    color: '#333',
+    lineHeight: 22,
+    textAlign: 'center',
+  },
+  card: {
+    backgroundColor: '#ffffff',
+    borderRadius: 16,
+    marginBottom: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 5,
+    overflow: 'hidden',
+  },
+  stepHeader: {
     flexDirection: 'row',
-    gap: 8,
+    alignItems: 'center',
+    padding: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f0f0f0',
+    backgroundColor: '#fafafa',
+  },
+  stepNumberContainer: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: '#4c669f',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 12,
+  },
+  stepNumber: {
+    color: '#ffffff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  sectionTitle: {
+    fontSize: 18,
+    color: '#333',
+  },
+  cardContent: {
+    padding: 16,
+  },
+  sectionText: {
+    fontSize: 16,
+    color: '#555',
+    lineHeight: 22,
+  },
+  modeContainer: {
+    marginTop: 16,
+  },
+  modeCard: {
+    backgroundColor: '#f8f9fa',
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 10,
+    borderLeftWidth: 4,
+    borderLeftColor: '#4c669f',
+  },
+  modeTitle: {
+    fontSize: 16,
+    color: '#333',
+    marginBottom: 4,
+  },
+  modeDescription: {
+    fontSize: 14,
+    color: '#666',
+  },
+  iconContainer: {
+    alignItems: 'center',
+    marginTop: 16,
+  },
+  stepIcon: {
+    width: 60,
+    height: 60,
+    resizeMode: 'contain',
+  },
+  controlGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    marginTop: 16,
+  },
+  controlButton: {
+    width: '48%',
+    backgroundColor: '#4c669f',
+    borderRadius: 8,
+    padding: 12,
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  troubleshootingCard: {
+    backgroundColor: '#fff8e1',
+  },
+  troubleshootingTitle: {
+    fontSize: 18,
+    color: '#ff6f00',
+  },
+  troubleshootingItem: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginTop: 12,
+  },
+  bulletDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: '#ff6f00',
+    marginTop: 7,
+    marginRight: 8,
+  },
+  bulletText: {
+    flex: 1,
+    fontSize: 15,
+    color: '#555',
+    lineHeight: 22,
   },
 });
