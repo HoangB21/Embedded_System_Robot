@@ -117,8 +117,14 @@ export default function ExploreScreen() {
               Use the directional buttons to move the robot:
             </ThemedText>
             <View style={styles.controlGrid}>
-              <View style={[styles.controlButton, { width: '100%' }]}>
+              <View style={[styles.controlButton, { width: '32%' }]}>
+                <ThemedText type="defaultSemiBold">Forward Left</ThemedText>
+              </View>
+              <View style={[styles.controlButton, { width: '32%' }]}>
                 <ThemedText type="defaultSemiBold">Forward</ThemedText>
+              </View>
+              <View style={[styles.controlButton, { width: '32%' }]}>
+                <ThemedText type="defaultSemiBold">Forward Right</ThemedText>
               </View>
               <View style={[styles.controlButton, { width: '32%' }]}>
                 <ThemedText type="defaultSemiBold">Left</ThemedText>
@@ -129,8 +135,14 @@ export default function ExploreScreen() {
               <View style={[styles.controlButton, { width: '32%' }]}>
                 <ThemedText type="defaultSemiBold">Right</ThemedText>
               </View>
-              <View style={[styles.controlButton, { width: '100%' }]}>
+              <View style={[styles.controlButton, { width: '32%' }]}>
+                <ThemedText type="defaultSemiBold">Backward Left</ThemedText>
+              </View>
+              <View style={[styles.controlButton, { width: '32%' }]}>
                 <ThemedText type="defaultSemiBold">Backward</ThemedText>
+              </View>
+              <View style={[styles.controlButton, { width: '32%' }]}>
+                <ThemedText type="defaultSemiBold">Backward Right</ThemedText>
               </View>
             </View>
           </View>

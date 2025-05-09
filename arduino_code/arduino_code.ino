@@ -4,9 +4,6 @@
   - M1: WiFi Control
   - M2: Obstacle Avoidance
   - M3: Follow
-
-  Based on original code by Ajay Huajian
-  ZHIYI Technology Inc.
 */
 
 #include <ESP8266WiFi.h>
@@ -31,7 +28,8 @@ float distance = 0;                    // Current measured distance
 String command;                        // String to store app command state
 int currentMode = 1;                   // Default mode: WiFi Control (1)
 unsigned long lastTime = 0;            // For non-blocking operations
-const char *ssid = "ZY ESP8266 Robot"; // WiFi Hotspot Name
+const char *ssid = "Robocon"; // WiFi Hotspot Name
+const char *password = "12345678";
 String robotStatus = "Stopped";        // Current movement status
 
 // Objects
@@ -60,7 +58,7 @@ void setup()
 
   // Setup WiFi Access Point
   WiFi.mode(WIFI_AP);
-  WiFi.softAP(ssid);
+  WiFi.softAP(ssid, password);
   IPAddress myIP = WiFi.softAPIP();
   Serial.print("AP IP address: ");
   Serial.println(myIP);
@@ -463,12 +461,12 @@ void followMode()
 {
   float cm = GetDistance();
 
-  if (cm < 5)
+  if (cm < 10)
   {
     Backward();
     robotStatus = "Too Close - Backing Up";
   }
-  else if (cm > 10 && cm < 25)
+  else if (cm > 20 && cm < 50)
   {
     Forward();
     robotStatus = "Following";

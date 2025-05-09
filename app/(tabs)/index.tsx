@@ -51,7 +51,7 @@ export default function HomeScreen() {
             <Text style={styles.sectionTitle}>Status</Text>
             <View style={styles.statusRow}>
               {renderStatusCard('Distance', robotStatus?.distance ? `${robotStatus.distance.toFixed(2)} cm` : null)}
-              {renderStatusCard('Status', robotStatus?.status ?? null)}
+              {renderStatusCard('Action', robotStatus?.status ?? null)}
             </View>
           </View>
 
